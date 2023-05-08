@@ -1,7 +1,7 @@
 {
-  "name": "nextra-docs-template",
+  "name": "docs",
   "version": "0.0.1",
-  "description": "Nextra docs template",
+  "description": "Documentation Site for Continuum Design System",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,23 +9,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/Continuum-Design-System/docs.git"
   },
-  "author": "Shu Ding <g@shud.in>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/Continuum-Design-System/docs/issues"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/Continuum-Design-System/docs#readme",
   "dependencies": {
-    "next": "^13.0.6",
+    "ct-ds": "workspace:^0.0.1",
+    "next": "^13.4.1",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "18.11.10",
-    "typescript": "^4.9.3"
+    "@types/node": "20.1.0",
+    "typescript": "^5.0.4"
   }
 }

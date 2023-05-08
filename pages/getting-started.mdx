@@ -1,0 +1,90 @@
+# Getting Started
+
+import { Steps, Tab, Tabs } from "nextra-theme-docs";
+
+<Steps>
+ 
+### Installing `ct-ds`
+ 
+Install Continuum Design System using your favourite package manager
+
+<Tabs items={["pnpm", "yarn", "npm"]}>
+  <Tab>
+  ```bash
+   pnpm install ct-ds 
+   ```
+   </Tab>
+  <Tab>
+  ```bash
+  yarn install ct-ds 
+  ```
+  </Tab>
+  <Tab>
+  ```bash
+  npm install ct-ds
+  ```
+  </Tab>
+</Tabs>
+
+### Load needed components
+
+```ts
+import load from "ct-ds" // or import { load } from "ct-ds"
+
+load("button", "input", "checkbox")
+```
+
+For More components see [Components](/components)
+
+### Usage
+
+<Tabs items={["HTML", "Svelte", "React (JSX)", "Vue"]}>
+
+<Tab>
+```html
+<script>
+    import load from "ct-ds" // or import { load } from "ct-ds"
+    load("button", "input", "checkbox")
+</script>
+
+<ct-button>Click Me</ct-button>
+```
+</Tab>
+<Tab>
+```svelte
+<script context="module">
+    import load from "ct-ds" // or import { load } from "ct-ds"
+    load("button", "input", "checkbox")
+</script>
+
+<ct-button>Click Me</ct-button>
+```
+</Tab>
+<Tab>
+```tsx
+import load from "ct-ds" // or import { load } from "ct-ds"
+load("button", "input", "checkbox")
+
+export default () => {
+  return (
+    <ct-button>Click Me</ct-button>
+  )
+}
+```
+</Tab>
+<Tab>
+```vue
+<script setup lang="ts">
+    import load from "ct-ds" // or import { load } from "ct-ds"
+    load("button", "input", "checkbox")
+</script>
+
+<template>
+    <ct-button>Click Me</ct-button>
+</template>
+```
+</Tab>
+
+</Tabs>
+
+</Steps>

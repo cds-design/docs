@@ -1,3 +1,20 @@
 {
-  "index": "Introduction"
+  "*": {
+    "theme": {}
+  },
+  "index": "Introduction",
+  "getting-started": "Getting Started",
+  "-": {
+    "type": "separator"
+  },
+  "guidelines": "Guidelines",
+  "components": "Components",
+  "customization": "Customization",
+  "advanced": "Advanced",
+  "--": {
+    "type": "separator"
+  },
+  "reference": "Reference",
+  "about": "About"
+
 }
