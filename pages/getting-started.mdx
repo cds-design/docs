@@ -10,17 +10,17 @@ Install Continuum Design System using your favourite package manager
 
 <Tabs items={["pnpm", "yarn", "npm"]}>
   <Tab>
-  ```bash
+  ```bash copy
    pnpm install ct-ds 
    ```
    </Tab>
   <Tab>
-  ```bash
+  ```bash copy
   yarn install ct-ds 
   ```
   </Tab>
   <Tab>
-  ```bash
+  ```bash copy
   npm install ct-ds
   ```
   </Tab>
@@ -28,7 +28,7 @@ Install Continuum Design System using your favourite package manager
 
 ### Load needed components
 
-```ts
+```ts copy
 import load from "ct-ds" // or import { load } from "ct-ds"
 
 load("button", "input", "checkbox")
@@ -41,7 +41,7 @@ For More components see [Components](/components)
 <Tabs items={["HTML", "Svelte", "React (JSX)", "Vue"]}>
 
 <Tab>
-```html
+```html copy
 <script>
     import load from "ct-ds" // or import { load } from "ct-ds"
     load("button", "input", "checkbox")
@@ -51,7 +51,7 @@ For More components see [Components](/components)
 ```
 </Tab>
 <Tab>
-```svelte
+```svelte copy
 <script context="module">
     import load from "ct-ds" // or import { load } from "ct-ds"
     load("button", "input", "checkbox")
@@ -61,7 +61,7 @@ For More components see [Components](/components)
 ```
 </Tab>
 <Tab>
-```tsx
+```tsx copy
 import load from "ct-ds" // or import { load } from "ct-ds"
 load("button", "input", "checkbox")
 
@@ -73,7 +73,7 @@ export default () => {
 ```
 </Tab>
 <Tab>
-```vue
+```vue copy
 <script setup lang="ts">
     import load from "ct-ds" // or import { load } from "ct-ds"
     load("button", "input", "checkbox")
@@ -86,5 +86,7 @@ export default () => {
 </Tab>
 
 </Tabs>
+
+Thats it! You are ready to use Continuum Design System
 
 </Steps>

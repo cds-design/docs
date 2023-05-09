@@ -5,6 +5,7 @@ import Logo from "./components/Logo";
 const config: DocsThemeConfig = {
   logo: <Logo />,
   sidebar: {
+    defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
   head: (

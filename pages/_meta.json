@@ -14,7 +14,10 @@
   "--": {
     "type": "separator"
   },
+  "roadmap": {
+    "title": "Roadmap",
+    "href": "https://github.com/orgs/Continuum-Design-System/projects/1/views/1?layout=roadmap"
+  },
   "reference": "Reference",
   "about": "About"
-
 }
