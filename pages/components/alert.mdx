@@ -1,13 +1,14 @@
-import Component from "../../components/Component";
 
 # Alert
 
-Alert used to
+## Attributes
+Property | Description | Attribute | Type | Default
+--- | --- | --- | --- | ---
+type | The type of alert component changes the color and icon of the alert | <span style={{whiteSpace:'nowrap'}}>type</span> | <span style={{whiteSpace:'nowrap'}}>`"info" \| "cross" \| "warn"{:ts}`</span> | `"info"{:ts}`
+closable | Makes the alert closable | <span style={{whiteSpace:'nowrap'}}>closable</span> | <span style={{whiteSpace:'nowrap'}}>`boolean{:ts}`</span> | `false{:ts}`
 
-## Props
+## Methods
+Method | Description | Returns
+--- | --- | ---
+close | Closes the alert | <span style={{whiteSpace:'nowrap'}}>`void{:ts}`</span>
 
-| Name | Type                             | Defaults | Description |
-| ---- | -------------------------------- | -------- | ----------- |
-| type | `"error" \| "info" \| "warn"` | "info"   | Alert type  |
-
-<Component type="warn" name="alert">This is an Alert</Component>

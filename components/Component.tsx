@@ -1,13 +1,33 @@
-import load, { type ComponentName } from "ct-ds";
-import { ThemeSwitch } from "nextra-theme-docs"
+import load, { type ComponentName } from "cds-design";
+import manifest from "cds-design/dist/custom-elements.json" 
 
-export default function Component(props: { name: ComponentName, children?: React.ReactNode, attributes?: any }) {
-    const { name, children, ...attributes } = props;
+const modules = manifest.modules[0].declarations[0];
+
+type Attribute = { name: string; type: string, defaultValue?: string | number }
+
+export default function Component(props: { name: ComponentName, children?: React.ReactNode }) {
+    const { name, children } = props;
     load(name);
-    const ComponentTagName = `ct-${name}` as keyof JSX.IntrinsicElements;
+    const ComponentTagName = `cds-${name}` as keyof JSX.IntrinsicElements;
+
+    const attributes: Attribute[] = modules.attributes.map(({ attribute, type: { text }, default: defaultValue }) => {
+        return {
+            name: attribute,
+            type: text,
+            defaultValue,
+        }
+    });
     return (
-        <ComponentTagName {...attributes}>
+        <>
+            <ComponentTagName>
             {children}
-        </ComponentTagName>
+            </ComponentTagName>
+            <div>
+                {attributes.forEach(({ name }) => {
+                    <span>{name}</span>
+                })}
+                
+            </div>
+        </>
     );
 }

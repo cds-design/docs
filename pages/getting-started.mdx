@@ -4,24 +4,24 @@ import { Steps, Tab, Tabs } from "nextra-theme-docs";
 
 <Steps>
  
-### Installing `ct-ds`
+### Installing `cds-design`
  
 Install Continuum Design System using your favourite package manager
 
 <Tabs items={["pnpm", "yarn", "npm"]}>
   <Tab>
   ```bash copy
-   pnpm install ct-ds 
+   pnpm install cds-design 
    ```
    </Tab>
   <Tab>
   ```bash copy
-  yarn install ct-ds 
+  yarn install cds-design 
   ```
   </Tab>
   <Tab>
   ```bash copy
-  npm install ct-ds
+  npm install cds-design
   ```
   </Tab>
 </Tabs>
@@ -29,7 +29,7 @@ Install Continuum Design System using your favourite package manager
 ### Load needed components
 
 ```ts copy
-import load from "ct-ds" // or import { load } from "ct-ds"
+import load from "cds-design" // or import { load } from "cds-design"
 
 load("button", "input", "checkbox")
 ```
@@ -43,31 +43,31 @@ For More components see [Components](/components)
 <Tab>
 ```html copy
 <script>
-    import load from "ct-ds" // or import { load } from "ct-ds"
+    import load from "cds-design" // or import { load } from "cds-design"
     load("button", "input", "checkbox")
 </script>
 
-<ct-button>Click Me</ct-button>
+<cds-button>Click Me</cds-button>
 ```
 </Tab>
 <Tab>
 ```svelte copy
 <script context="module">
-    import load from "ct-ds" // or import { load } from "ct-ds"
+    import load from "cds-design" // or import { load } from "cds-design"
     load("button", "input", "checkbox")
 </script>
 
-<ct-button>Click Me</ct-button>
+<cds-button>Click Me</cds-button>
 ```
 </Tab>
 <Tab>
 ```tsx copy
-import load from "ct-ds" // or import { load } from "ct-ds"
+import load from "cds-design" // or import { load } from "cds-design"
 load("button", "input", "checkbox")
 
 export default () => {
   return (
-    <ct-button>Click Me</ct-button>
+    <cds-button>Click Me</cds-button>
   )
 }
 ```
@@ -75,12 +75,12 @@ export default () => {
 <Tab>
 ```vue copy
 <script setup lang="ts">
-    import load from "ct-ds" // or import { load } from "ct-ds"
+    import load from "cds-design" // or import { load } from "cds-design"
     load("button", "input", "checkbox")
 </script>
 
 <template>
-    <ct-button>Click Me</ct-button>
+    <cds-button>Click Me</cds-button>
 </template>
 ```
 </Tab>
