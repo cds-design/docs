@@ -1,3 +1,62 @@
-## color mechanics [^1]
+import Palette from "../../components/Palette"
+import ColorScheme from "../../components/ColorScheme"
 
-[^1]:https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/
+# Colors
+
+> Color is a power which directly influences the soul.
+> ― Wassily Kandinsky
+
+Color is one of the first things we notice about something that we see. The color of an element plays a huge part in defining its identity and deal. It helps us in perceiving, remembering and recreating that particular object.
+
+{/*
+> The purest and most thoughtful minds are those which love color the most.
+> ― John Ruskin, The Stones of Venice
+
+> Mere color, unspoiled by meaning, and unallied with definite form, can speak to the soul in a thousand different ways.
+> ― Oscar Wilde
+
+> Color! what a deep and mysterious language, the language of dreams.
+> ― Paul Gauguin
+*/}
+
+## Foreground
+
+|                                             | Light theme | Dark theme |
+| ------------------------------------------- | ----------- | ---------- |
+| Text color                                  | `#000000`   | `#ffffff`  |
+| Accent color                                | `#ff0000`   | `#ff0000`  |
+| roles color (info, success, warning, error) | `#0000ff`   | `#0000ff`  |
+
+## Backgrounds
+
+|             | Light theme | Dark theme |
+| ----------- | ----------- | ---------- |
+| Backgrounds | `#ffffff`   | `#000000`  |
+
+Background of the continuum components are blurred and translucent. So, if the primary background has mesh gradient or images and videos with dynamic colors, it will be visible through the component.  Hence the component becomes more visually appealing and relevant 
+to the background. Most of the components have a grainy texture, which makes the components feel more organic and natural. To learn more about the textures, visit [Textures](./texture).
+
+## Don't relay on color alone
+
+Color as a standalone aspect can't be used to define or distinguish the component or it's role.That is because color as a factor is not
+possible for everyone to see.
+
+For example, While hovering a button, instead of showing the change through color, variation in size is preferable.
+
+
+## Color Mechanics [^1]
+[^1]: https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/
+
+<Palette/>
+
+## Colors in CDS
+
+<ColorScheme />
+
+---
+
+{/* 
+TODO
+- Component Dissection images
+- https://colorable.jxnblk.com/ inspired generator.
+ */}

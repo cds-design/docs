@@ -5,6 +5,6 @@ const withNextra = nextra({
   themeConfig: "./theme.config.tsx",
 });
 
-export default withNextra({
+const nextConfig = {};
 
-});
+export default withNextra(nextConfig);

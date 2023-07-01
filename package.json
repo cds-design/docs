@@ -4,9 +4,10 @@
   "description": "Documentation Site for Continuum Design System",
   "type": "module",
   "scripts": {
-    "dev": "pnpm gen:components && next dev",
-    "gen:components": "node --no-warnings --loader=ts-node/esm ./scripts/md.ts",
-    "build": "pnpm gen:components && next build",
+    "dev": "pnpm gen && next dev",
+    "ts-node": "node --no-warnings --loader=ts-node/esm",
+    "gen": "pnpm ts-node ./scripts/pre-run.ts",
+    "build": "pnpm gen && next build",
     "start": "next start"
   },
   "repository": {
@@ -28,7 +29,9 @@
   },
   "devDependencies": {
     "@types/node": "20.1.0",
+    "@types/react": "^18.2.14",
+    "css-tree": "^2.3.1",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.3"
   }
 }
