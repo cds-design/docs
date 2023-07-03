@@ -1,6 +1,8 @@
-import { writeFile } from "node:fs/promises";
 import manifest from "cds-design/dist/custom-elements.json" assert { type: "json" };
-import MD, { MDTable } from "./MD-beta.js";
+import { writeFile } from "node:fs/promises";
+import MD, { MDTable, utils } from "./lib/MD.js";
+
+const { noCSSWrap, wrapBackticks } = utils;
 
 type Declaration = typeof manifest.modules[number]["declarations"][number];
 
@@ -12,14 +14,6 @@ type Member = Declaration["members"][number] & {
         }
     }
 };
-
-function noCSSWrap(content: string) {
-    return `<span style={{whiteSpace:'nowrap'}}>${content}</span>`
-}
-
-function wrapBackticks(content: string, type = "") {
-    return `\`${content}{:${type}}\``
-}
 
 function generateMarkdown(component: Declaration) {
 
@@ -42,8 +36,8 @@ function generateMarkdown(component: Declaration) {
                 attributes.addRow(
                     member.name,
                     member.description,
-                    noCSSWrap(member.attribute),
-                    noCSSWrap(wrapBackticks(member.type.text, "ts")),
+                    (member.attribute),
+                    (wrapBackticks(member.type.text, "ts")),
                     member.default === undefined ? "__required__" : wrapBackticks(member.default, "ts")
                 )
                 break;
@@ -52,7 +46,7 @@ function generateMarkdown(component: Declaration) {
                 methods.addRow(
                     member.name,
                     member.description,
-                    noCSSWrap(wrapBackticks(member.return?.type.text ?? "void", "ts"))
+                    (wrapBackticks(member.return?.type.text ?? "void", "ts"))
                 )
                 break;
 
@@ -86,7 +80,7 @@ async function generateComponentDocs() {
 
     await Promise.all(components.map(async (component) => await writeMarkdown(component)))
 
-    console.log("Auto generated component docs  ✅\n")
+    console.log("Auto generated component docs  ✅")
 }
 
-generateComponentDocs();
+export default generateComponentDocs

@@ -162,7 +162,7 @@ class MD {
                 table.addRow(...content[i])
             }
             this._add(table.get())
-    }
+        }
         return this;
     }
 
@@ -223,8 +223,27 @@ class MDTable extends MD {
     }
 }
 
+const utils = {
+    wrapBackticks(content: string, type = "") {
+
+        type = type === "" ? "" : `{:${type}}`;
+
+        return `\`${content}${type}\``
+    },
+    customStyle(content: string, styles = {}, id = "") {
+        return `<span id="${id}" style={${JSON.stringify(styles)}}>${content}</span>`
+    },
+    noCSSWrap(content: string, styles = {}, id = "") {
+        return utils.customStyle(content, { whiteSpace: 'nowrap', ...styles }, id)
+    },
+    link(content: string, link: string) {
+        return `[${content}](${link})`
+    }
+}
+
 export {
     MD,
     MD as default,
-    MDTable
-}
+    MDTable,
+    utils,
+};
