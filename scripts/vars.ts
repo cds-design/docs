@@ -1,4 +1,4 @@
-import { GLOBAL_CSS } from "cds-design";
+import { GLOBAL_CSS } from "cds-design/dist/constants";
 import { parse, walk } from 'css-tree';
 import { writeFile } from "node:fs/promises";
 import MD, { MDTable, utils } from "./lib/MD.js";

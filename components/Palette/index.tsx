@@ -1,7 +1,12 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { useHSL } from "./hook"
 import { load } from "cds-design"
 import styles from "./palette.module.css"
+import Slider from "cds-design/types/components/slider"
+
+onload = () => {
+    load("button", "slider", "toggle")
+}
 
 
 const { floor, random } = Math
@@ -77,7 +82,7 @@ const randomize = (forDarkTheme: boolean) => ({
 
 export default function Palette() {
 
-    const [forDarkTheme, setForDarkTheme] = useState(false)
+    const [forDarkTheme, setForDarkTheme] = useState(true)
 
     const [foreground, setForeground] = useHSL(0, 0, 0);
     const [background, setBackground] = useHSL(0, 100, 0);
@@ -90,7 +95,7 @@ export default function Palette() {
         setBackground.HSL(randomize(forDarkTheme).background(H))
     }
 
-    function handleHueChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function handleHueChange(e: React.ChangeEvent<Slider>) {
         const newHue = Number(e.target.value)
         setAccent.H(newHue)
         setForeground.H(newHue)
@@ -101,7 +106,16 @@ export default function Palette() {
 
     useEffect($randomize, [])
 
-    load("button", "slider", "toggle")
+    const Toggle = useMemo(() => (
+        <cds-toggle
+            id="theme"
+            toggled={forDarkTheme}
+            onInput={(event) => {
+                // @ts-ignore
+                setForDarkTheme(event.target.toggled)
+                $randomize()
+            }}
+        />), [forDarkTheme])
 
     return (
         <div className={styles.container}>
@@ -109,22 +123,15 @@ export default function Palette() {
                 <div className={styles.controls}>
                     <label htmlFor="theme">
                         Dark Theme
-                        <cds-toggle
-                            id="theme"
-                            onInput={(event) => {
-                                // @ts-ignore
-                                setForDarkTheme(event.target.toggled)
-                                $randomize()
-                            }}
-                        />
+                        {Toggle}
                     </label>
                     <label htmlFor="hue">
                         Hue
-                        <input type="range" name="hue" id="hue" min={0} max={360} onChange={handleHueChange} />
+                        <cds-slider id="hue" min={0} max={360} value={accent.h} onInput={handleHueChange} />
                     </label>
                 </div>
-                
-                <button onClick={$randomize}>Randomize</button>
+
+                <cds-button onClick={$randomize}>Randomize</cds-button>
             </div>
             <div>
                 <span style={{
