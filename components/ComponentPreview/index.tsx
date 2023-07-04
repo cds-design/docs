@@ -1,169 +1,231 @@
-import load, { type ComponentName } from "cds-design";
-import { useState, useEffect, useRef, SyntheticEvent } from "react";
+import { useReactive, useMount } from "ahooks";
+import { load, type ComponentName } from "cds-design";
 import manifest from "cds-design/dist/custom-elements.json";
+import { SyntheticEvent, useMemo } from "react";
+
+
+const SLOTTED_COMPONENTS = ["button", "badge", "alert"];
+
 
 type Attribute = {
-  name: string;
-  type: {
-    text: string;
-  };
-  default: string;
+    name: string;
+    type: {
+        text: string;
+    };
+    default: string;
 };
 
 type SanitizedAttribute = {
-  type: string[] | string;
-  default: string;
-  inputType: string;
-  value?: string;
+    type: string[] | string;
+    default: string;
+    inputType: string;
+    value?: string;
+    required?: boolean;
 };
 
 type SanitizedAttributes = { [name: string]: SanitizedAttribute };
 
 function inferTypes($type: string): {
-  type: string | string[];
-  inputType: string;
+    type: string | string[];
+    inputType: string;
 } {
-  let type: string | string[] = $type.trim().replaceAll(/\"/, "");
+    let type: string | string[] = $type.trim().replaceAll(/\"/g, "");
 
-  if (type.includes("|")) {
-    type = type.split(" | ");
-  }
+    if (type.includes("|")) {
+        type = type.split(" | ");
+    }
 
-  let inputType = "";
+    let inputType = "";
 
-  switch (type) {
-    case "boolean":
-      inputType = "checkbox";
-      break;
+    switch (type) {
+        case "boolean":
+            inputType = "checkbox";
+            break;
 
-    case "number":
-      inputType = "number";
-      break;
+        case "number":
+            inputType = "number";
+            break;
 
-    case "string":
-      inputType = "text";
-      break;
+        case "string":
+            inputType = "text";
+            break;
 
-    default:
-      inputType = "select";
-      break;
-  }
+        default:
+            inputType = "select";
+            break;
+    }
 
-  return {
-    type,
-    inputType,
-  };
+    return {
+        type,
+        inputType,
+    };
 }
 
 function sanitizeAttributes(attributes: Attribute[]): SanitizedAttributes {
-  let sanitizedAttributes: SanitizedAttributes;
-  attributes.map((unsanitizedAttribute: Attribute) => {
-    const { type, inputType } = inferTypes(unsanitizedAttribute.type.text);
-    sanitizeAttributes[unsanitizedAttribute.name] = {
-      type,
-      inputType,
-      default: unsanitizedAttribute.default?.replaceAll(/\"/, ""),
-    } as SanitizedAttribute;
-  });
-  return sanitizedAttributes;
+    let sanitizedAttributes: SanitizedAttributes = {};
+    attributes.map((unsanitizedAttribute: Attribute) => {
+        const { type, inputType } = inferTypes(unsanitizedAttribute.type.text);
+        sanitizedAttributes[unsanitizedAttribute.name] = {
+            type,
+            inputType,
+            required: !unsanitizedAttribute.default,
+            default: unsanitizedAttribute.default?.replaceAll(/\"/g, ""),
+        } as SanitizedAttribute;
+    });
+    return sanitizedAttributes;
 }
 
-function useComponent(
-  name: ComponentName
-): [SanitizedAttributes, (name: string, value: string) => void] {
-  const { attributes: unSanitizedAttributes } = manifest.modules.find(
-    (module) => module.path.endsWith(`${name}/index.ts`)
-  )?.declarations[0] as { attributes: Attribute[] };
+type DOMAttributes = { [name: string]: string };
 
-  const sanitizedAttributes = sanitizeAttributes(unSanitizedAttributes);
 
-  const [attributes, $setAttributes] =
-    useState<SanitizedAttributes>(sanitizeAttributes);
+function useComponent(name: ComponentName) {
+    const { attributes: unSanitizedAttributes } = manifest.modules.find(
+        (module) => module.path.endsWith(`${name}/index.ts`)
+    )?.declarations[0] as { attributes: Attribute[] };
 
-  function setAttribute(name: string, value: string) {
-    attributes[name].value = value;
-  }
+    useMount(() => {
+        load(name);
+    })
 
-  return [attributes, setAttribute];
+    const sanitizedAttributes = sanitizeAttributes(unSanitizedAttributes);
+
+    const reactiveAttributes = useReactive(sanitizedAttributes);
+
+    const reactiveDOMAttributes = useReactive<DOMAttributes>({});
+
+    const reactiveSlot = useReactive<{ content: string }>({});
+
+    const setAttribute = (name: string, value: string) => {
+        reactiveAttributes[name].value = value;
+        reactiveDOMAttributes[name] = value;
+    }
+
+    const setSlot = (content: string) => {
+        reactiveSlot.content = content;
+    }
+
+    return [
+        reactiveAttributes,
+        reactiveDOMAttributes,
+        setAttribute,
+        setSlot,
+    ] as const;
 }
 
 type CDSComponentProps = {
-  name: ComponentName;
+    name: ComponentName;
 };
 
-export default function CDSComponent({
-  props: { name },
-}: {
-  props: CDSComponentProps;
-}) {
-  const [code, setCode] = useState("");
+export default function ComponentPreview({ name }: CDSComponentProps) {
+    const [
+        attributes,
+        DOMAttributes,
+        setAttribute,
+        setSlot,
+    ] = useComponent(name);
 
-  const tagName: `cds-${ComponentName}` = `cds-${name}`;
+    const CDSComponent = `cds-${name}` as const;
 
-  const componentDOMRef = useRef<any>();
+    const changeHandler = (event: any) => {
+        for (const name in attributes) {
+            const value = (event.target as HTMLElement).getAttribute(name)!;
+            switch (value) {
+                case "":
+                    setAttribute(name, "true");
+                    break;
 
-  useEffect(() => {
-    setCode(componentDOMRef.current.outerHTML);
-  }, [componentDOMRef]);
+                case null:
+                    setAttribute(name, "false")
+                    break;
 
-  load(name);
+                default:
+                    setAttribute(name, value);
+                    break;
+            }
+        }
+    };
 
-  const [attributes, setAttribute] = useComponent(name);
+    return (
+        <div>
+            <CDSComponent {...DOMAttributes} onInput={changeHandler}>
+                {SLOTTED_COMPONENTS.includes(name) && (
+                    <span contentEditable spellCheck="false">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem, cum qui, modi voluptatem reprehenderit ab numquam doloremque in minus dicta minima voluptas excepturi culpa dolorum? Omnis fugit quasi nemo perferendis!</span>
+                )}
+            </CDSComponent>
+            <Controller attributes={attributes} setAttribute={setAttribute} />
+        </div>
+    )
 
-  let DOMAttributes: { [name: string]: string } = {};
-
-  for (const name in attributes) {
-    DOMAttributes[name] = attributes[name].value;
-  }
-
-  function changeHandler(event: Event) {
-    for (const name in attributes) {
-      const value = (event.target as HTMLElement).getAttribute(name)!;
-      setAttribute(name, value);
-    }
-  }
-
-  return (
-    // @ts-ignore
-    <tagName
-      ref={componentDOMRef}
-      {...DOMAttributes}
-      onChange={changeHandler}
-    />
-  );
 }
 
 type ControllerProps = {
-  attributes: SanitizedAttributes;
-  setAttribute: (name: string, value: string) => void;
+    attributes: SanitizedAttributes;
+    setAttribute: (name: string, value: string) => void;
 };
 
-function Controller({ props }: { props: ControllerProps }) {
-  function observe(name: string) {
-    return (event: SyntheticEvent) => {
-      props.setAttribute(name, (event.target as HTMLInputElement).value);
+function Controller({ attributes, setAttribute }: ControllerProps) {
+    const observe = (name: string, inputType: string = "text") => {
+        return (event: SyntheticEvent) => {
+            switch (inputType) {
+                case "checkbox":
+                    setAttribute(
+                        name,
+                        (!(event.target as HTMLInputElement).checked).toString()
+                    );
+                    break;
+
+                default:
+                    setAttribute(name, (event.target as HTMLInputElement).value);
+            }
+        };
     };
-  }
 
-  const inputs = [];
+    const inputs: JSX.Element[] = [];
 
-  for (const name in props.attributes) {
-    const attribute = props.attributes[name];
+    for (const name in attributes) {
+        const attribute = attributes[name];
 
-    switch (attribute.inputType) {
-      case "select":
-        return (
-          <select>
-            {(attribute.type as string[]).map((type) => {
-              return <option value={type}>{type}</option>;
-            })}
-          </select>
-        );
+        inputs.push(<br key={`${name}-br`} />);
 
-      default:
-        return <input type={attribute.inputType} onInput={observe(name)} />;
+        switch (attribute.inputType) {
+            case "select":
+                inputs.push(
+                    <label key={name}>
+                        {name} :
+                        <select value={attribute.value ?? attribute.default} onChange={observe(name)}>
+                            {(attribute.type as string[]).map((type, i) => {
+                                return (
+                                    <option value={type} key={i}>
+                                        {type}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </label>
+                );
+                break;
+
+            default:
+                inputs.push(
+                    <label key={name}>
+                        {name} :
+                        <input
+                            type={attribute.inputType}
+                            key={name}
+                            value={attribute.value ?? attribute.default}
+                            checked={attribute.value === "true"}
+                            onInput={observe(name, attribute.inputType)}
+                        />
+                        {attribute.required &&
+                            (attribute.value === undefined || attribute.value === "") && (
+                                <span>required</span>
+                            )}
+                    </label>
+                );
+        }
     }
-  }
 
-  return <>{inputs}</>;
+    return <>{inputs}</>
+
+
 }

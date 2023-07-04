@@ -187,6 +187,23 @@ class MD {
 
 }
 
+class MDX extends MD {
+    constructor(base: MarkDownLike = "") {
+        super(base);
+    }
+
+    addImport(name: string, path: string) {
+        this.markdown += `import ${name} from '${path}'\n`
+        return this;
+    }
+
+    addJSX(content: string) {
+        this.markdown += `{${content}}\n`
+        return this;
+    }
+
+}
+
 class MDTable extends MD {
 
     private _hasRows: boolean = false;
@@ -245,5 +262,6 @@ export {
     MD,
     MD as default,
     MDTable,
+    MDX,
     utils,
 };

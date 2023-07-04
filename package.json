@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Continuum-Design-System/docs#readme",
   "dependencies": {
+    "ahooks": "^3.7.8",
     "cds-design": "workspace:*",
     "next": "^13.4.2",
     "nextra": "latest",

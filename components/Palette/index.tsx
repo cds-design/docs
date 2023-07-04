@@ -4,9 +4,7 @@ import { load } from "cds-design"
 import styles from "./palette.module.css"
 import Slider from "cds-design/types/components/slider"
 
-onload = () => {
-    load("button", "slider", "toggle")
-}
+load("button", "slider", "toggle")
 
 
 const { floor, random } = Math
@@ -106,24 +104,21 @@ export default function Palette() {
 
     useEffect($randomize, [])
 
-    const Toggle = useMemo(() => (
-        <cds-toggle
-            id="theme"
-            toggled={forDarkTheme}
-            onInput={(event) => {
-                // @ts-ignore
-                setForDarkTheme(event.target.toggled)
-                $randomize()
-            }}
-        />), [forDarkTheme])
-
     return (
         <div className={styles.container}>
             <div className={styles.top}>
                 <div className={styles.controls}>
                     <label htmlFor="theme">
                         Dark Theme
-                        {Toggle}
+                        <cds-toggle
+                            id="theme"
+                            toggled={forDarkTheme}
+                            onInput={(event) => {
+                                // @ts-ignore
+                                setForDarkTheme(event.target.toggled)
+                                $randomize()
+                            }}
+                        />
                     </label>
                     <label htmlFor="hue">
                         Hue

@@ -1,6 +1,6 @@
 import manifest from "cds-design/dist/custom-elements.json" assert { type: "json" };
 import { writeFile } from "node:fs/promises";
-import MD, { MDTable, utils } from "./lib/MD.js";
+import { MDX, MDTable, utils } from "./lib/MD.js";
 
 const { noCSSWrap, wrapBackticks } = utils;
 
@@ -19,9 +19,13 @@ function generateMarkdown(component: Declaration) {
 
     const members = (component.members as Member[]).filter(({ kind, privacy }) => (["field", "method", "event"].includes(kind) && privacy !== "private"));
 
-    const md = new MD();
+    const md = new MDX();
+
+    md.addImport("ComponentPreview", "../../components/ComponentPreview")
 
     md.addH1(component.name);
+
+    md.addJSX(`<ComponentPreview name="${component.name.toLowerCase()}" />`)
 
     const attributes = new MDTable("Property", "Description", "Attribute", "Type", "Default")
         .addHeading("Attributes", 2);
