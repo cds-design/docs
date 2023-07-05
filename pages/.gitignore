@@ -1,0 +1,9 @@
+## Ignoring all automatically generated files
+
+# Components
+components/*
+!components/_meta.json
+!components/index.md
+
+# Variables
+reference/variables.mdx
