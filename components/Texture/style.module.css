@@ -1,5 +1,5 @@
 .parent {
-  width: 20vmin;
+  width: 30vmin;
   aspect-ratio: 1/1;
   border-radius: 1em;
   transform: scale(0.75) rotateY(-30deg) rotateX(45deg) translateZ(2.5rem);
@@ -8,7 +8,8 @@
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
   transition: 0.6s ease transform;
   position: relative;
-  margin: none;
+  padding: 2em;
+  margin: 3em auto;
 }
 
 .parent:hover {
@@ -54,8 +55,8 @@
   transform: translateZ(-2rem);
   background: no-repeat 0 0/100% 100% radial-gradient(circle at 0% 0%,
       transparent 25%,
-      rgba(0, 255, 255, 0.5) 50%,
-      rgba(0, 255, 255, 0.75) 100%);
+      rgba(3, 37, 245, 0.5) 50%,
+      rgba(3, 37, 245, 0.75) 100%);
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
 }
 

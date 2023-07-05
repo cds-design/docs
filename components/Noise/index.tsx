@@ -1,6 +1,11 @@
 import { useRef, useState } from "react"
+import {useMount} from "ahooks"
+import styles from "./style.module.css"
+import {load} from "cds-design"
+
 
 export default function Noise() {
+
     const [width, setWidth] = useState(200)
     const [frequency, setFrequency] = useState(width / 1000)
 
@@ -24,9 +29,33 @@ export default function Noise() {
         link.click();
     }
 
+    useMount(()=>{
+        load("button","slider")
+    })
+
     return (
         <>
-            <svg
+        <div className={styles.wrapper}>
+           
+            <div className={styles.top}>
+            
+            <div className={styles.controls}>
+            <button className={styles.button} onClick={randomize.bind(this)}>Randomize</button>
+            <input type="range"
+                
+                ref={sliderRef}
+                step={0.01}
+                min={width / 1000}
+                max={2 * width / 1000}
+                value={frequency}
+                onChange={() => {
+                    setFrequency(Number(sliderRef.current?.value))
+                }}/>
+           
+            </div>
+            <button className={styles.button} onClick={download.bind(this)}>Download</button>
+            </div>
+             <svg
                 ref={SVGRef}
                 style={{
                     filter: 'grayscale(1)'
@@ -37,19 +66,7 @@ export default function Noise() {
                 </filter>
                 <rect width='100%' height='100%' filter='url(#noiseFilter)' />
             </svg>
-            <button onClick={randomize.bind(this)}>Randomize</button>
-            <button onClick={download.bind(this)}>Download</button>
-            <input
-                type="range"
-                ref={sliderRef}
-                step={0.01}
-                min={width / 1000}
-                max={2 * width / 1000}
-                value={frequency}
-                onChange={() => {
-                    setFrequency(Number(sliderRef.current?.value))
-                }}
-            />
+            </div>
         </>
     )
 }

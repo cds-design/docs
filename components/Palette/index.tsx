@@ -126,36 +126,31 @@ export default function Palette() {
                     </label>
                 </div>
 
-                <cds-button onClick={$randomize}>Randomize</cds-button>
+                <cds-button className={styles.button} onClick={$randomize}>Randomize</cds-button>
             </div>
-            <div>
-                <span style={{
-                    display: "block",
-                    width: 100,
-                    height: 100,
-                    backgroundColor: `hsl(${accent.h}, ${accent.s}%, ${accent.l}%)`
+            <div className={styles.swatches}>
+                <div style={{
+                  backgroundColor: `hsl(${accent.h}, ${accent.s}%, ${accent.l}%)`
                 }}
+                className={styles.swatch}
                 >
-                    Accent
-                </span>
-                <span style={{
-                    display: "block",
-                    width: 100,
-                    height: 100,
+                    <span>Accent</span>
+                </div>
+                <div style={{
+              
                     backgroundColor: `hsl(${foreground.h}, ${foreground.s}%, ${foreground.l}%)`
                 }}
-                >
-                    Foreground
-                </span>
-                <span style={{
-                    display: "block",
-                    width: 100,
-                    height: 100,
+                className={styles.swatch}
+                ><span>
+                    Foreground</span>
+                </div>
+                <div style={{
                     backgroundColor: `hsl(${background.h}, ${background.s}%, ${background.l}%)`
                 }}
+                className={styles.swatch}
                 >
-                    Background
-                </span>
+                    <span>Background</span>
+                </div>
             </div>
         </div>
     )

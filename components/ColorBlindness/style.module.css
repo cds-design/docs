@@ -1,0 +1,15 @@
+.wrapper{
+    display: flex;
+    margin: auto;
+    padding: 1em;
+    gap: 1.25em;
+    flex-direction: column-reverse;
+    align-items: center;
+
+}
+
+.img{
+    width: 50vmin;
+    aspect-ratio: 1;
+}
+

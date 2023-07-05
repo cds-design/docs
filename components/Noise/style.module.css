@@ -1,0 +1,32 @@
+.wrapper{
+	display: grid;
+    gap: 1em;
+	grid-template-columns: 1fr 1fr;
+place-items: center;
+}
+
+.top{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 2em;
+	flex-direction: column;
+align-items: flex-start;
+
+}
+
+.controls{
+	display: flex;
+	gap: 0.5em;
+
+	justify-content: space-around;
+	
+}
+
+.button{
+	background-color: rgba(0, 0, 0, 0.6);
+	color: white;
+	padding:0.5em 0.75em;
+	border-radius: 0.75em;
+	font-size: 0.75em;
+}

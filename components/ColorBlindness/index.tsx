@@ -1,4 +1,5 @@
 import { useState } from "react"
+import styles from "./style.module.css"
 // import { svg } from "./style.css"
 
 const conditions = {
@@ -14,7 +15,7 @@ export default function ColorBlindness() {
     const colors = conditions[condition]
 
     return (
-        <>
+        <div className={styles.wrapper}>
             <select onChange={(event) => {
                 setCondition((event.target as HTMLSelectElement).value as keyof typeof conditions)
             }}>
@@ -23,7 +24,7 @@ export default function ColorBlindness() {
                 <option value="by">Blue-Yellow Blindness</option>
                 <option value="nc">No Color Perception</option>
             </select>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303 303">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303 303" className={styles.img}>
                 <defs>
                     <style>
                         {`path{stroke:#231f20;stroke-miterlimit:10;stroke-width:1px}`}
@@ -42,7 +43,7 @@ export default function ColorBlindness() {
                 <path fill={colors[10]} d="M80.3 18.4 151 150.8h-.9l-126.6-79a144 144 0 0 1 57-53.4Z" />
                 <path fill={colors[11]} d="m156.4.7-5 149.9-.8-.5L80.4 18.5C103.2 6 129.4-.6 156.4.7Z" />
             </svg>
-        </>
+        </div>
     )
 
 }

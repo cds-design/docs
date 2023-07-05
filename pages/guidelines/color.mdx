@@ -1,4 +1,4 @@
-import Palette from "../../components/Palette"
+import Generator from "../../components/Palette"
 import ColorScheme from "../../components/ColorScheme"
 
 # Colors
@@ -6,7 +6,7 @@ import ColorScheme from "../../components/ColorScheme"
 > Color is a power which directly influences the soul.
 > ― Wassily Kandinsky
 
-Color is one of the first things we notice about something that we see. The color of an element plays a huge part in defining its identity and deal. It helps us in perceiving, remembering and recreating that particular object.
+Color is one of the first things we notice about something that we see. The color of an element plays a huge part in defining its identity and appeal. It helps us in perceiving, remembering and recreating that particular object.
 
 {/*
 > The purest and most thoughtful minds are those which love color the most.
@@ -19,6 +19,16 @@ Color is one of the first things we notice about something that we see. The colo
 > ― Paul Gauguin
 */}
 
+## Color Theory[^1]
+
+[^1]: https://www.interaction-design.org/literature/topics/color-theory
+
+Color theory is the collection of rules and guidelines that explain how humans perceive color and how colors mix, match or contrast with each other. It guides the use of color in art and design to communicate a message on both an aesthetic and a psychological level. Color theory is based on a color wheel that shows the categories and relationships of colors. Designers use color theory to choose appealing color schemes for visual interfaces, considering human optical ability, psychology, culture and more.
+
+- **Color Wheel**: The color wheel is an illustrative diagram that shows 12 colors around a circle, used to represent each color’s relationship to one another. Colors arranged opposite each other are complementary to one another. Colors located near other colors share common characteristics and often pair well together.
+- **Color Schemes**: Color schemes are combinations of colors that create a harmonious and pleasing effect. There are different types of color schemes, such as monochromatic, analogous, complementary, split-complementary, triadic and tetradic. Each type has its own advantages and disadvantages depending on the context and purpose of the design.
+- **Color Properties**: Color properties are the attributes that define how a color looks and behaves. The main color properties are hue, chroma, value and temperature. Hue is the name of the color (e.g., red, blue, yellow). Chroma is the purity or intensity of the color. Value is the lightness or darkness of the color. Temperature is the warmth or coolness of the color.
+
 ## Foreground
 
 |                                             | Light theme | Dark theme |
@@ -27,31 +37,52 @@ Color is one of the first things we notice about something that we see. The colo
 | Accent color                                | `#ff0000`   | `#ff0000`  |
 | roles color (info, success, warning, error) | `#0000ff`   | `#0000ff`  |
 
+The foreground colors are the colors that appear on top of the background colors. They are used to create contrast and hierarchy in the design. The foreground colors should be legible and accessible for all users.
+
+- **Text Color**: The text color is the color of the typography elements in the design. It should be easy to read and distinguish from the background color. A good rule of thumb is to use dark text on light backgrounds and light text on dark backgrounds.
+- **Accent Color**: The accent color is the color that draws attention and highlights important elements in the design. It should be used sparingly and strategically to create visual interest and guide the user's eye. A common way to choose an accent color is to use a complementary or analogous color from the color wheel.
+- **Roles Color**: The roles color is the color that indicates the function or meaning of an element in the design. It should be consistent and clear for all users. A common way to choose a roles color is to use a hue that matches the intended message (e.g., blue for information, green for success, yellow for warning, red for error).
+
 ## Backgrounds
 
 |             | Light theme | Dark theme |
 | ----------- | ----------- | ---------- |
 | Backgrounds | `#ffffff`   | `#000000`  |
 
+The background colors are the colors that fill the entire canvas or a specific area of the design. They are used to create contrast and mood in the design. The background colors should be harmonious and appropriate for the context and purpose of the design.
+
+- **Light Theme**: A light theme uses a light background color (usually white or a tint of a hue) with dark foreground colors. A light theme creates a clean and spacious look that is suitable for professional and formal settings. A light theme also reduces eye strain and improves readability in bright environments.
+- **Dark Theme**: A dark theme uses a dark background color (usually black or a shade of a hue) with light foreground colors. A dark theme creates a sleek and elegant look that is suitable for entertainment and creative settings. A dark theme also saves battery life and improves visibility in low-light environments.
+
 Background of the continuum components are blurred and translucent. So, if the primary background has mesh gradient or images and videos with dynamic colors, it will be visible through the component.  Hence the component becomes more visually appealing and relevant 
 to the background. Most of the components have a grainy texture, which makes the components feel more organic and natural. To learn more about the textures, visit [Textures](./texture).
 
-## Don't relay on color alone
+## Don't rely on color alone
 
-Color as a standalone aspect can't be used to define or distinguish the component or it's role.That is because color as a factor is not
+Color as a standalone aspect can't be used to define or distinguish the component or its role. That is because color as a factor is not
 possible for everyone to see.
 
 For example, While hovering a button, instead of showing the change through color, variation in size is preferable.
 
+- **Accessibility**: Accessibility is the practice of designing products and services that are usable by everyone, regardless of their abilities or disabilities. Accessibility includes ensuring that color is not the only way to convey information or functionality in a design. For example, using icons, labels, patterns, shapes or sounds along with color can help users with color vision deficiencies or low vision to understand and interact with the design.
+- **Contrast**: Contrast is the difference in brightness or color between two elements in a design. Contrast helps to create visual hierarchy and focus in a design. Contrast also affects the legibility and accessibility of the design. For example, using high contrast between text and background can help users with low vision or dyslexia to read and comprehend the text.
+- **Context**: Context is the situation or environment in which a design is used or viewed. Context affects how users perceive and interpret colors in a design. For example, using different colors for different cultures, seasons, moods or purposes can help users to associate and connect with the design.
 
-## Color Mechanics [^1]
-[^1]: https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/
+## Color Mechanics[^2]
+[^2]: https://www.smashingmagazine.com/2023/04/color-mechanics-ui-kits/
 
-<Palette/>
+Color mechanics are the techniques and methods that designers use to manipulate and apply colors in a design. Color mechanics help designers to create effective and consistent color schemes that match the brand identity and user expectations.
+
+- **Color Modes**: Color modes are the ways that colors are represented and displayed on different devices and mediums. The most common color modes are RGB (red, green, blue) for digital screens and CMYK (cyan, magenta, yellow, black) for print materials. Designers should use the appropriate color mode for their intended output to ensure accurate and consistent color reproduction.
+- **Color Systems**: Color systems are the standardized ways of naming and organizing colors for easy reference and communication. The most common color systems are hexadecimal (hex) codes for web design, HSL (hue, saturation, lightness) for CSS design, Pantone for print design and RAL for industrial design. Designers should use the appropriate color system for their intended audience and medium to ensure clear and precise color specification.
+- **Color Tools**: Color tools are the software applications or online resources that designers use to create and manage colors in a design. Color tools help designers to generate, select, adjust, test and export colors for their projects. Some examples of color tools are Adobe Color CC, Coolors.co, Paletton.com and Colorable.jxnblk.com.
 
 ## Colors in CDS
 
 <ColorScheme />
+
+## Palette Generator
+<Generator/>
 
 ---
 
