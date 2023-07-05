@@ -8,5 +8,5 @@ export default function Texture() {
       <div className={style.grain}></div>
       <div className={style.grad}></div>
     </div>
-  )
+  );
 }

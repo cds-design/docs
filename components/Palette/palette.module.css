@@ -1,42 +1,41 @@
 .container {
-    display: grid;
-    grid-template-rows: auto 1fr;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 .top {
-    display: flex;
-    align-items: center;
-    padding: 2em;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 2em;
+  justify-content: space-between;
 }
 
 .controls {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
-.swatches{
- display: flex;
-    flex-direction: row;
-    gap: 2em;
-    justify-content: space-around;
-}
-
-.swatch{
-    display: grid;
-    place-items: center;
-    width: 100%;
-    border-radius: 0.75em;
-    aspect-ratio: 1;
-    filter: drop-shadow(1px 1px black);
-
+.swatches {
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  justify-content: space-around;
 }
 
-.swatch span{
-    background-color: rgba(0,0,0,0.75);
-    padding: 0.25em 0.5em;
-    border-radius: 0.25em;
+.swatch {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  border-radius: 0.75em;
+  aspect-ratio: 1;
+  filter: drop-shadow(1px 1px black);
 }
 
-.button{
-    font-size: 0.75em;
+.swatch span {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+}
+
+.button {
+  font-size: 0.75em;
 }

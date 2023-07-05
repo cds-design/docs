@@ -53,10 +53,13 @@
 
 .grad {
   transform: translateZ(-2rem);
-  background: no-repeat 0 0/100% 100% radial-gradient(circle at 0% 0%,
+  background: no-repeat 0 0/100% 100%
+    radial-gradient(
+      circle at 0% 0%,
       transparent 25%,
       rgba(3, 37, 245, 0.5) 50%,
-      rgba(3, 37, 245, 0.75) 100%);
+      rgba(3, 37, 245, 0.75) 100%
+    );
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
 }
 
