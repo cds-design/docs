@@ -85,8 +85,6 @@ export default function Palette() {
     setBackground.H(newHue);
   }
 
-  console.log({ forDarkTheme });
-
   useEffect($randomize, []);
 
   return (
@@ -117,39 +115,35 @@ export default function Palette() {
           </label>
         </div>
 
-        <cds-button onClick={$randomize}>Randomize</cds-button>
+        <cds-button className={styles.button} onClick={$randomize}>
+          Randomize
+        </cds-button>
       </div>
-      <div>
-        <span
+      <div className={styles.swatches}>
+        <div
           style={{
-            display: "block",
-            width: 100,
-            height: 100,
             backgroundColor: `hsl(${accent.h}, ${accent.s}%, ${accent.l}%)`,
           }}
+          className={styles.swatch}
         >
-          Accent
-        </span>
-        <span
+          <span>Accent</span>
+        </div>
+        <div
           style={{
-            display: "block",
-            width: 100,
-            height: 100,
             backgroundColor: `hsl(${foreground.h}, ${foreground.s}%, ${foreground.l}%)`,
           }}
+          className={styles.swatch}
         >
-          Foreground
-        </span>
-        <span
+          <span>Foreground</span>
+        </div>
+        <div
           style={{
-            display: "block",
-            width: 100,
-            height: 100,
             backgroundColor: `hsl(${background.h}, ${background.s}%, ${background.l}%)`,
           }}
+          className={styles.swatch}
         >
-          Background
-        </span>
+          <span>Background</span>
+        </div>
       </div>
     </div>
   );
