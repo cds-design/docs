@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useHSL } from "./hook";
 import { load } from "cds-design";
 import styles from "./palette.module.css";
-import Slider from "cds-design/types/components/slider";
 
 load("button", "slider", "toggle");
 
@@ -78,7 +77,7 @@ export default function Palette() {
     setBackground.HSL(randomize(forDarkTheme).background(H));
   }
 
-  function handleHueChange(e: React.ChangeEvent<Slider>) {
+  function handleHueChange(e: React.ChangeEvent<any>) {
     const newHue = Number(e.target.value);
     setAccent.H(newHue);
     setForeground.H(newHue);
