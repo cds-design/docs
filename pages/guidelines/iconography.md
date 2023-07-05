@@ -22,12 +22,12 @@ Some of the icon properties that web designers and developers can use to manipul
 After analyzing the iconography of various design systems, we have come up with a set of guidelines for the CDS iconography. These guidelines are based on the experimentation and research done by the CDS team.
 
 - **Thick Strokes:** CDS components uses blur in their background and the primary background is preferred to be dynamic. For these reasons,
-the icons in the foreground should have a slightly thicker stroke than the usual ones.
+  the icons in the foreground should have a slightly thicker stroke than the usual ones.
 - **Smooth Curves:** Components of CDS have a rounded, smooth corners. Using sharp edged icons are not advised because they are inconsistent with CDS components.
 - **Filled Icons:** For better readability considering the dynamic background in CDS, using filled icons and dual-tone icons is preferable over thin
-outlined icons.
+  outlined icons.
 - **Pixelated Style:** The texture of CDS, 'TJ' has noise in it's background. Pixelated icons seem to match this style. While choosing the pixelated icons make sure that they ar
-readable in-spite of the pixelation.
+  readable in-spite of the pixelation.
 - **Large Size:** It is advisable to use larger icons than usual for ensuring the legibility and usability on dynamic backgrounds.
 - **Drop Shadow:** If the icons have less readability, consider adding drop shadow to highlight them.
 

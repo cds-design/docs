@@ -1,7 +1,7 @@
 {
-    "color": "Color",
-    "typography": "Typography",
-    "iconography": "Iconography",
-    "accessibility": "Accessibility",
-    "texture": "Texture"
+  "color": "Color",
+  "typography": "Typography",
+  "iconography": "Iconography",
+  "accessibility": "Accessibility",
+  "texture": "Texture"
 }

@@ -82,8 +82,8 @@ This ensures the inclusiveness of the web for various users who are not able to 
 
 ARIA attributes are used to provide additional information about the elements to the screen readers. They are used to provide information about the role, state and properties of the elements.
 
-| Attribute          | Description                                                               |
-| ------------------ | ------------------------------------------------------------------------- |
+| Attribute                 | Description                                                               |
+| ------------------------- | ------------------------------------------------------------------------- |
 | `aria-label{:html}`       | Used to provide a label for an element that is not visible on the screen. |
 | `aria-labelledby{:html}`  | Used to provide a label for an element that is visible on the screen.     |
 | `aria-describedby{:html}` | Used to provide a description for an element.                             |
@@ -132,17 +132,17 @@ For more information about writing alt texts for images, refer to the following 
 
 Stand alone icons without any text that performs an action should have a `role{:html}` attribute with a value of `button{:html}` or `link{:html}` to indicate that they are interactive elements.They should also have an alt text to describe their purpose for those who can't see them.
 
-{/* - aria-hidden
+{/\* - aria-hidden
 
-- aria-label */}
+- aria-label \*/}
 
 ### Links
 
 For links, the `title{:html}` attribute should be descriptive, clear and concise as they are used as tooltips for links. They should inform the users about the purpose of the link. Also, the `href{:html}` attribute is required to be present properly for redirects.
 
-{/* - title - for tooltips must be descriptive
+{/\* - title - for tooltips must be descriptive
 
-- proper a tag with href */}
+- proper a tag with href \*/}
 
 ### Tooltips
 
@@ -154,8 +154,8 @@ When including an abbreviation or acronym, provide a full expansion of the term 
 
 The optional title attribute can provide an expansion for the abbreviation or acronym when a full expansion is not present. This provides a hint to user agents on how to announce/display the content while informing all users what the abbreviation means. If present, title must contain this full description and nothing else.
 
-{/*
+{/_
 https://primer.style/design/guides/accessibility/tools
- */}
+_/}
 
 ---
