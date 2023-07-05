@@ -1,21 +1,72 @@
-import { useState } from "react"
-import styles from "./style.module.css"
+import { useState } from "react";
 // import { svg } from "./style.css"
 
 const conditions = {
-    normal: ["#4190ca", "#0100f6", "#38069d", "#7917a9", "#b92748", "#eb3223", "#e9602d", "#ee9d39", "#f2c042", "#feff53", "#c3d946", "#66ae35"],
-    rg: ["#bfc145", "#cfd05a", "#dddf68", "#ffff89", "#bfc16d", "#71724f", "#4f4bae", "#0100d4", "#221c79", "#545084", "#8c8b3e", "#bcbc3f"],
-    by: ["#e13939", "#e05b5f", "#e27077", "#efa1a9", "#a88489", "#4b6569", "#51a9a4", "#58bab2", "#406c66", "#72746f", "#a7312d", "#df3022"],
-    nc: ["#8e8e8e", "#a8a8a8", "#bdbdbd", "#efefef", "#b9b9b9", "#7d7d7d", "#737373", "#4d4d4d", "#333333", "#4f4f4f", "#646464", "#828282"],
-}
+  normal: [
+    "#4190ca",
+    "#0100f6",
+    "#38069d",
+    "#7917a9",
+    "#b92748",
+    "#eb3223",
+    "#e9602d",
+    "#ee9d39",
+    "#f2c042",
+    "#feff53",
+    "#c3d946",
+    "#66ae35",
+  ],
+  rg: [
+    "#bfc145",
+    "#cfd05a",
+    "#dddf68",
+    "#ffff89",
+    "#bfc16d",
+    "#71724f",
+    "#4f4bae",
+    "#0100d4",
+    "#221c79",
+    "#545084",
+    "#8c8b3e",
+    "#bcbc3f",
+  ],
+  by: [
+    "#e13939",
+    "#e05b5f",
+    "#e27077",
+    "#efa1a9",
+    "#a88489",
+    "#4b6569",
+    "#51a9a4",
+    "#58bab2",
+    "#406c66",
+    "#72746f",
+    "#a7312d",
+    "#df3022",
+  ],
+  nc: [
+    "#8e8e8e",
+    "#a8a8a8",
+    "#bdbdbd",
+    "#efefef",
+    "#b9b9b9",
+    "#7d7d7d",
+    "#737373",
+    "#4d4d4d",
+    "#333333",
+    "#4f4f4f",
+    "#646464",
+    "#828282",
+  ],
+};
 
 export default function ColorBlindness() {
-    const [condition, setCondition] = useState<keyof typeof conditions>("normal")
+  const [condition, setCondition] = useState<keyof typeof conditions>("normal");
 
-    const colors = conditions[condition]
+  const colors = conditions[condition];
 
     return (
-        <div className={styles.wrapper}>
+        <>
             <select onChange={(event) => {
                 setCondition((event.target as HTMLSelectElement).value as keyof typeof conditions)
             }}>
@@ -24,7 +75,7 @@ export default function ColorBlindness() {
                 <option value="by">Blue-Yellow Blindness</option>
                 <option value="nc">No Color Perception</option>
             </select>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303 303" className={styles.img}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303 303">
                 <defs>
                     <style>
                         {`path{stroke:#231f20;stroke-miterlimit:10;stroke-width:1px}`}
@@ -43,7 +94,7 @@ export default function ColorBlindness() {
                 <path fill={colors[10]} d="M80.3 18.4 151 150.8h-.9l-126.6-79a144 144 0 0 1 57-53.4Z" />
                 <path fill={colors[11]} d="m156.4.7-5 149.9-.8-.5L80.4 18.5C103.2 6 129.4-.6 156.4.7Z" />
             </svg>
-        </div>
+        </>
     )
 
 }

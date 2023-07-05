@@ -22,7 +22,7 @@
     "next.config.mj",
     "scripts/comp.ts",
     "scripts/pre-run.ts",
-    "scripts/vars.ts",
+    "scripts/vars.ts"
   ],
   "exclude": ["node_modules"]
 }

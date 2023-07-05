@@ -85,8 +85,6 @@ export default function Palette() {
     setBackground.H(newHue);
   }
 
-  console.log({ forDarkTheme });
-
   useEffect($randomize, []);
 
   return (
