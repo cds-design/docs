@@ -1,6 +1,5 @@
 import { useState } from "react"
 import styles from "./style.module.css"
-// import { svg } from "./style.css"
 
 const conditions = {
   normal: ["#4190ca", "#0100f6", "#38069d", "#7917a9", "#b92748", "#eb3223", "#e9602d", "#ee9d39", "#f2c042", "#feff53", "#c3d946", "#66ae35"],

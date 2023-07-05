@@ -1,9 +1,16 @@
+import { Dela_Gothic_One } from "next/font/google"
+
+const dela_gothic_one = Dela_Gothic_One({
+  weight: "400",
+  subsets: ['latin']
+})
+
 export default function Logo() {
   return (
     <span
       style={{
-        fontFamily: `"Dela Gothic One", sans-serif`,
-        lineHeight: 1.1,
+        ...dela_gothic_one.style,
+        lineHeight: 1.4,
       }}
     >
       CDS

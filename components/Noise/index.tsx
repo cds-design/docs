@@ -1,7 +1,7 @@
-import { useRef, useState } from "react"
 import { useMount } from "ahooks"
-import styles from "./style.module.css"
 import { load } from "cds-design"
+import { useRef, useState } from "react"
+import styles from "./style.module.css"
 
 
 export default function Noise() {

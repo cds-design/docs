@@ -10,12 +10,7 @@ const config: DocsThemeConfig = {
   },
   head: (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&text=CDS&display=swap"
-        rel="stylesheet"
-      />
+      {/* HEAD TAG */}
     </>
   ),
   primaryHue: {
