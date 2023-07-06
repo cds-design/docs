@@ -74,7 +74,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
         working-directory: ${{ env.ROOT_PATH }}
       - name: Build deps
-        run: pnpm build --filter=@cds-design/auto-gen && pnpm install --filter=docs && pnpm build --filter=docs
+        run: pnpm build --filter=@cds-design/auto-gen
         working-directory: ${{ env.ROOT_PATH }}
       - name: install docs deps
         run: pnpm install --filter=docs
