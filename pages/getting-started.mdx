@@ -9,15 +9,27 @@ import { Steps, Tab, Tabs } from "nextra-theme-docs";
 Install Continuum Design System using your favorite package manager
 
 <Tabs items={["pnpm", "yarn", "npm"]}>
-  <Tab>```bash copy pnpm install cds-design ```</Tab>
-  <Tab>```bash copy yarn install cds-design ```</Tab>
-  <Tab>```bash copy npm install cds-design ```</Tab>
+  <Tab>
+  ```sh copy
+  pnpm install cds-design
+  ```
+  </Tab>
+  <Tab>
+  ```sh copy
+  yarn install cds-design
+  ```
+  </Tab>
+  <Tab>
+  ```sh copy
+  npm install cds-design
+   ```
+   </Tab>
 </Tabs>
 
 ### Load needed components
 
 ```ts copy
-import load from "cds-design"; // or import { load } from "cds-design"
+import { load } from "cds-design"; // or import load from "cds-design"
 
 load("button", "input", "checkbox");
 ```
@@ -31,28 +43,27 @@ For More components see [Components](/components)
 <Tab>
 ```html copy
 <script>
-    import load from "cds-design" // or import { load } from "cds-design"
+    import { load } from "cds-design" // or import load from "cds-design"
     load("button", "input", "checkbox")
 </script>
 
 <cds-button>Click Me</cds-button>
-
-````
+```
 </Tab>
 <Tab>
 ```svelte copy
 <script context="module">
-    import load from "cds-design" // or import { load } from "cds-design"
+    import { load } from "cds-design" // or import load from "cds-design"
     load("button", "input", "checkbox")
 </script>
 
 <cds-button>Click Me</cds-button>
-````
+```
 
 </Tab>
 <Tab>
 ```tsx copy
-import load from "cds-design" // or import { load } from "cds-design"
+import { load } from "cds-design" // or import load from "cds-design"
 load("button", "input", "checkbox")
 
 export default () => {
@@ -65,7 +76,7 @@ export default () => {
 <Tab>
 ```vue copy
 <script setup lang="ts">
-    import load from "cds-design" // or import { load } from "cds-design"
+    import { load } from "cds-design" // or import load from "cds-design"
     load("button", "input", "checkbox")
 </script>
 
