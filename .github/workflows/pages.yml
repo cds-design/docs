@@ -70,7 +70,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v3
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile"
         working-directory: ${{ env.ROOT_PATH }}
       - name: Build
         run: pnpm build --filter=@cds-design/auto-gen && pnpm install --filter=docs && pnpm build --filter=docs
