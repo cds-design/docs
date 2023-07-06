@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTheme } from "nextra-theme-docs";
-import colorsImage from "./cds-color.excalidraw.svg";
+import colorsImage from "./cds-color.svg";
 
 export default function ColorScheme() {
   const { resolvedTheme } = useTheme();
