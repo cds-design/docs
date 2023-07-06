@@ -1,9 +1,9 @@
-import { Dela_Gothic_One } from "next/font/google"
+import { Dela_Gothic_One } from "next/font/google";
 
 const dela_gothic_one = Dela_Gothic_One({
   weight: "400",
-  subsets: ['latin']
-})
+  subsets: ["latin"],
+});
 
 export default function Logo() {
   return (

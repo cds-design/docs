@@ -1,4 +1,8 @@
-import type { Attribute, SanitizedAttributes, SanitizedAttribute } from "./types"
+import type {
+  Attribute,
+  SanitizedAttributes,
+  SanitizedAttribute,
+} from "./types";
 
 export function inferTypes($type: string): {
   type: string | string[];
@@ -36,7 +40,9 @@ export function inferTypes($type: string): {
   };
 }
 
-export function sanitizeAttributes(attributes: Attribute[]): SanitizedAttributes {
+export function sanitizeAttributes(
+  attributes: Attribute[],
+): SanitizedAttributes {
   let sanitizedAttributes: SanitizedAttributes = {};
   attributes.map((unsanitizedAttribute: Attribute) => {
     const { type, inputType } = inferTypes(unsanitizedAttribute.type.text);

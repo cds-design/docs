@@ -15,7 +15,6 @@ export const { floor, random } = Math;
             dark -> 0% to 10%
 */
 
-
 export function randomHue() {
   return floor(random() * 361); // 0 - 360
 }

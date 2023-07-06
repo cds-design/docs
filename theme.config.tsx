@@ -8,11 +8,7 @@ const config: DocsThemeConfig = {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
   },
-  head: (
-    <>
-      {/* HEAD TAG */}
-    </>
-  ),
+  head: <>{/* HEAD TAG */}</>,
   primaryHue: {
     dark: 180,
     light: 220,
