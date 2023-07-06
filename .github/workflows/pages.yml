@@ -21,10 +21,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: "." # default value when not using subfolders
-  # BUILD_PATH: subfolder
+  # BUILD_PATH: "." # default value when not using subfolders
+  BUILD_PATH: CDS/apps/docs # when using subfolders
 
 jobs:
+
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -62,10 +64,6 @@ jobs:
           repository: cds-design/CDS
           path: CDS
           submodules: true
-      
-      defaults:
-        run:
-          working-directory: CDS/apps/docs
 
       - name: Setup Pages
         id: pages
