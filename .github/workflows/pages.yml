@@ -56,6 +56,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: Clone CDS repo
+        run: git clone --recurse-submodules https://github.com/cds-design/CDS.git
+
+      - name: Move to docs folder
+        run: cd CDS/apps/docs
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
