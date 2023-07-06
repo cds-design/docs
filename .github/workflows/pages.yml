@@ -57,7 +57,11 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Clone CDS repo
-        run: git clone --recurse-submodules https://github.com/cds-design/CDS.git
+        uses: actions/checkout@v3
+        with:
+          repository: cds-design/CDS
+          path: CDS
+          submodules: true
 
       - name: Move to docs folder
         run: cd CDS/apps/docs
