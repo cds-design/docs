@@ -73,7 +73,8 @@ jobs:
         run: pnpm install
         working-directory: ${{ env.ROOT_PATH }}
       - name: Build
-        run: pnpm build
+        run: pnpm install --filter=docs
+        run: pnpm build --filter=docs
         working-directory: ${{ env.ROOT_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
