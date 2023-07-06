@@ -1,28 +1,41 @@
 {
   "name": "docs",
   "version": "0.0.1",
-  "description": "Documentation Site for Continuum Design System",
-  "type": "module",
-  "scripts": {
-    "dev": "pnpm gen && next dev",
-    "gen:vars": "generate variables ./pages/reference/variables.mdx",
-    "gen:components": "generate components ./pages/components",
-    "gen": "pnpm gen:vars && pnpm gen:components",
-    "build": "pnpm gen && next build",
-    "start": "next start"
-  },
+  "description": "Documentation Site for Continuum Design System (CDS) by Verve",
+  "license": "MIT",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Continuum-Design-System/docs.git"
+    "url": "git+https://github.com/cds-design/docs.git"
   },
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Continuum-Design-System/docs/issues"
+    "url": "https://github.com/cds-design/docs/issues"
   },
-  "homepage": "https://github.com/Continuum-Design-System/docs#readme",
+  "homepage": "https://github.com/cds-design/docs#readme",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm gen && next build",
+    "dev": "pnpm gen && next dev",
+    "gen": "pnpm gen:vars && pnpm gen:components",
+    "gen:components": "generate components ./pages/components",
+    "gen:vars": "generate variables ./pages/reference/variables.mdx",
+    "start": "next start"
+  },
+  "maintainers": [
+    {
+      "name": "Rajaniraiyn R",
+      "email": "rajaniraiyn@gmail.com",
+      "url": "https://rajaniraiyn.github.io"
+    },
+    {
+      "name": "Tejaswini T",
+      "email": "teejaswan12@gmail.com",
+      "url": "https://teejaswan.github.io"
+    }
+  ],
   "dependencies": {
     "ahooks": "^3.7.8",
-    "cds-design": "workspace:*",
+    "cds-design": "*",
     "next": "^13.4.8",
     "nextra": "latest",
     "nextra-theme-docs": "latest",
