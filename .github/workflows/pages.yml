@@ -62,9 +62,10 @@ jobs:
           repository: cds-design/CDS
           path: CDS
           submodules: true
-
-      - name: Move to docs folder
-        run: cd CDS/apps/docs
+      
+      defaults:
+        run:
+          working-directory: CDS/apps/docs
 
       - name: Setup Pages
         id: pages
