@@ -8,6 +8,16 @@ const withNextra = nextra({
 
 const withTranspileModule = transpileModule(["ahooks"]);
 
-const nextConfig = {};
+const nextConfig = {
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+};
 
-export default withNextra(withTranspileModule(nextConfig));
+export default
+  withNextra(
+    withTranspileModule(
+      nextConfig
+    )
+  );

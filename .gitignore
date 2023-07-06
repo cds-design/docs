@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .turbo
 .next
+out
