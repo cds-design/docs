@@ -70,10 +70,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v3
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install && pnpm install --filter=docs
         working-directory: ${{ env.ROOT_PATH }}
       - name: Build
-        run: pnpm install --filter=docs
         run: pnpm build --filter=docs
         working-directory: ${{ env.ROOT_PATH }}
       - name: Upload artifact
