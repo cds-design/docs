@@ -73,7 +73,7 @@ jobs:
         run: pnpm install
         working-directory: ${{ env.ROOT_PATH }}
       - name: Build
-        run: pnpm install --filter=docs && pnpm build --filter=docs
+        run: pnpm build --filter=@cds-design/auto-gen && pnpm install --filter=docs && pnpm build --filter=docs
         working-directory: ${{ env.ROOT_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
