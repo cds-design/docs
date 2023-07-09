@@ -4,9 +4,16 @@ import Logo from "./components/Logo";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
+  logoLink: "/",
   useNextSeoProps() {
     return {
       titleTemplate: '%s - CDS',
+      additionalLinkTags: [
+        {
+          rel: 'icon',
+          href: './favicon.svg'
+        },
+      ]
     }
   },
   sidebar: {
@@ -24,8 +31,8 @@ const config: DocsThemeConfig = {
   // chat: {
   //   link: "https://discord.com",
   // },
-  faviconGlyph: "C",
-  docsRepositoryBase: "https://github.com/cds-design/docs",
+  // faviconGlyph: "C",
+  docsRepositoryBase: "https://github.com/cds-design/docs/tree/main",
   footer: {
     text: (
       <span>
