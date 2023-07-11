@@ -1,93 +1,178 @@
-import { useEffect, useState } from "react";
-import { useHSL } from "./hooks";
-import { load } from "cds-design";
+import { useMount, useBoolean } from "ahooks";
+import load from "cds-design";
+import { Code, CopyToClipboard, Pre } from "nextra/components";
+import { CSSSnippet, HSL2RGB, RGB2Hex } from "./helpers";
+import { usePalette } from "./hook";
 import styles from "./palette.module.css";
-import { randomHue, randomize } from "./helpers";
-import { useMount } from "ahooks";
 
-load("button", "slider", "toggle");
+const { random } = Math;
+
+load("slider", "toggle", "button")
+
+type SliderProps = {
+    label: string;
+    value: number;
+    setter: (value: number) => void;
+}
+function Slider({
+    label,
+    value,
+    setter,
+}: SliderProps) {
+    const id = label.toLowerCase().split(" ").join("-");
+
+    return (
+        <label htmlFor={id} className={styles.slider}>
+            {label}
+            <cds-slider
+                id={id}
+                min={0}
+                max={1}
+                step={0.01}
+                value={value}
+                onInput={(event) => setter(Number(event.currentTarget.value))}
+            />
+        </label>
+    )
+}
+
+type ControlsProps = {
+    palette: ReturnType<typeof usePalette>;
+};
+
+function Controls({
+    palette
+}: ControlsProps) {
+
+    function randomize() {
+        palette.base = {
+            hue: random(),
+            saturation: random(),
+            lightness: {
+                accent: random(),
+                foreground: random(),
+                background: random(),
+            }
+        }
+    }
+
+    function setBase(property: string, category?: Category) {
+        return (value: number) => {
+            if (category === undefined) {
+                palette.base = {
+                    ...palette.base,
+                    [property]: value,
+                }
+            } else {
+                palette.base = {
+                    ...palette.base,
+                    lightness: {
+                        ...palette.base.lightness,
+                        [category]: value,
+                    }
+                }
+            }
+        }
+    }
+
+    useMount(randomize);
+
+    return (
+        <div className={styles.controls}>
+            <div className={styles.sliders}>
+                <Slider
+                    label="Hue"
+                    value={palette.base.hue}
+                    setter={setBase("hue")}
+                />
+                <Slider
+                    label="Saturation"
+                    value={palette.base.saturation}
+                    setter={setBase("saturation")}
+                />
+                <details>
+                    <summary>Advanced Lightness</summary>
+                    <Slider
+                        label="Accent"
+                        value={palette.base.lightness.accent}
+                        setter={setBase("lightness", 'accent')}
+                    />
+                    <Slider
+                        label="Foreground"
+                        value={palette.base.lightness.foreground}
+                        setter={setBase("lightness", 'foreground')}
+                    />
+                    <Slider
+                        label="Background"
+                        value={palette.base.lightness.background}
+                        setter={setBase("lightness", 'background')}
+                    />
+                </details>
+            </div>
+            <div className={styles.otherControls}>
+                <label htmlFor="dark">
+                    Dark Theme
+                    <cds-toggle
+                        toggled={palette.isForDarkTheme}
+                        onInput={(event) => {
+                            palette.isForDarkTheme = event.currentTarget.toggled;
+                        }}
+                    />
+                </label>
+                <cds-button onClick={randomize}>Randomize</cds-button>
+            </div>
+        </div>
+    )
+}
+
+type SwatchesProp = {
+    palette: ReturnType<typeof usePalette>;
+};
+
+function Swatches({ palette }: SwatchesProp) {
+    return (
+        <div className={styles.swatches}>
+            {
+                Object.entries(palette.lightness).map(([key, lightness]) => {
+                    const hexCode = `#${RGB2Hex(...HSL2RGB(palette.hue, palette.saturation, lightness))}`;
+                    return (
+                        <div
+                            className={styles.swatch}
+                            style={{
+                                backgroundColor: `hsl(${palette.hue}, ${palette.saturation}%, ${lightness}%)`,
+                            }}
+                        >
+                            <span>
+                                {key}
+
+                                <Code className={styles.code}>
+                                    {hexCode}
+                                    <CopyToClipboard getValue={() => hexCode} />
+                                </Code>
+                            </span>
+                        </div>
+                    )
+                })
+            }
+        </div>
+    )
+}
 
 export default function Palette() {
-  const [forDarkTheme, setForDarkTheme] = useState(true);
+    const palette = usePalette();
 
-  const [foreground, setForeground] = useHSL(0, 0, 0);
-  const [background, setBackground] = useHSL(0, 100, 0);
-  const [accent, setAccent] = useHSL(0, 100, 0);
+    const CSS_Code = CSSSnippet(palette.hue, palette.saturation, palette.themedLightness);
 
-  function $randomize() {
-    const H = randomHue();
-    setAccent.HSL(randomize(forDarkTheme).accent(H));
-    setForeground.HSL(randomize(forDarkTheme).foreground(H));
-    setBackground.HSL(randomize(forDarkTheme).background(H));
-  }
-
-  function handleHueChange(e: React.ChangeEvent<any>) {
-    const newHue = Number(e.target.value);
-    setAccent.H(newHue);
-    setForeground.H(newHue);
-    setBackground.H(newHue);
-  }
-
-  useMount($randomize);
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.top}>
-        <div className={styles.controls}>
-          <label htmlFor="theme">
-            Dark Theme
-            <cds-toggle
-              id="theme"
-              toggled={forDarkTheme}
-              onInput={(event) => {
-                // @ts-ignore
-                setForDarkTheme(event.target.toggled);
-                $randomize();
-              }}
-            />
-          </label>
-          <label htmlFor="hue">
-            Hue
-            <cds-slider
-              id="hue"
-              min={0}
-              max={360}
-              value={accent.h}
-              onInput={handleHueChange}
-            />
-          </label>
-        </div>
-
-        <cds-button className={styles.button} onClick={$randomize}>
-          Randomize
-        </cds-button>
-      </div>
-      <div className={styles.swatches}>
-        <div
-          style={{
-            backgroundColor: `hsl(${accent.h}, ${accent.s}%, ${accent.l}%)`,
-          }}
-          className={styles.swatch}
-        >
-          <span>Accent</span>
-        </div>
-        <div
-          style={{
-            backgroundColor: `hsl(${foreground.h}, ${foreground.s}%, ${foreground.l}%)`,
-          }}
-          className={styles.swatch}
-        >
-          <span>Foreground</span>
-        </div>
-        <div
-          style={{
-            backgroundColor: `hsl(${background.h}, ${background.s}%, ${background.l}%)`,
-          }}
-          className={styles.swatch}
-        >
-          <span>Background</span>
-        </div>
-      </div>
-    </div>
-  );
+    return (
+        <>
+            <Controls palette={palette} />
+            <Swatches palette={palette} />
+            <Pre>
+                <Code className={styles.cssSnippet}>
+                    {CSS_Code}
+                    <CopyToClipboard getValue={() => CSS_Code} />
+                </Code>
+            </Pre>
+        </>
+    )
 }

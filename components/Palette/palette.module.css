@@ -1,41 +1,91 @@
-.container {
-  display: grid;
-  grid-template-rows: auto 1fr;
-}
-
-.top {
-  display: flex;
-  align-items: center;
-  padding: 2em;
-  justify-content: space-between;
-}
-
-.controls {
-  display: flex;
-  gap: 1rem;
-}
 .swatches {
-  display: flex;
-  flex-direction: row;
-  gap: 2em;
-  justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1em;
 }
 
 .swatch {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  border-radius: 0.75em;
-  aspect-ratio: 1;
-  filter: drop-shadow(1px 1px black);
+    width: 100%;
+    max-width: 50vw;
+    aspect-ratio: 1;
+    border-radius: 1em;
+
+    display: grid;
+    place-items: center;
 }
 
 .swatch span {
-  background-color: rgba(0, 0, 0, 0.75);
-  padding: 0.25em 0.5em;
-  border-radius: 0.25em;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 0.5em;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 0.5em;
+    min-width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
-.button {
-  font-size: 0.75em;
+.code {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25em;
+    color: lightgreen;
+    text-transform: lowercase;
+}
+
+.code button {
+    opacity: 0;
+}
+
+.code:hover button,
+.code button:focus-visible {
+    opacity: 1;
+}
+
+.cssSnippet {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.cssSnippet button {
+    opacity: 0;
+}
+
+.cssSnippet:hover button,
+.cssSnippet button:focus-visible {
+    opacity: 1;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sliders {
+    padding: 1em;
+}
+
+.sliders summary {
+    padding-block-end: 0.5em;
+}
+
+.slider {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.otherControls {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
