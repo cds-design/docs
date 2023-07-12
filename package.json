@@ -43,7 +43,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@cds-design/auto-gen": "workspace:*",
+    "@cds-design/auto-gen": "*",
     "@types/react": "^18.2.14",
     "typescript": "^5.1.6"
   }
