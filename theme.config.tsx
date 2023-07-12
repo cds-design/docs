@@ -4,7 +4,7 @@ import Logo from "./components/Logo";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
-  logoLink: "/",
+  logoLink: "https://cds-design.github.io/",
   useNextSeoProps() {
     return {
       titleTemplate: '%s - CDS',
