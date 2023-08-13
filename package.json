@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@cds-design/auto-gen": "*",
-    "@types/react": "^18.2.14",
+    "@types/react": "^18.2.20",
     "typescript": "^5.1.6"
   }
 }
